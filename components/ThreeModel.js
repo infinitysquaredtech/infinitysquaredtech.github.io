@@ -1,0 +1,142 @@
+function ThreeModel() {
+    try {
+        const mountRef = React.useRef(null);
+        const sceneRef = React.useRef(null);
+        const rendererRef = React.useRef(null);
+        const frameRef = React.useRef(null);
+        const isDragging = React.useRef(false);
+        const previousMousePosition = React.useRef({ x: 0, y: 0 });
+        const currentRotation = React.useRef({ x: 0, y: -Math.PI / 2 });
+        const isReturning = React.useRef(false);
+        const modelRef = React.useRef(null);
+        const [isLoaded, setIsLoaded] = React.useState(false);
+
+        React.useEffect(() => {
+            if (!mountRef.current) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            
+            const updateSize = () => {
+                const width = mountRef.current?.clientWidth || 300;
+                const height = mountRef.current?.clientHeight || 300;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+            };
+
+            renderer.setClearColor(0x000000, 0);
+            updateSize();
+            mountRef.current.appendChild(renderer.domElement);
+
+            // Add lights
+            const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(10, 10, 5);
+            scene.add(ambientLight);
+            scene.add(directionalLight);
+
+            camera.position.z = 5;
+
+            // Load GLB model
+            const loader = new THREE.GLTFLoader();
+            loader.load(
+                'asset/infinity_squared_logo.glb',
+                (gltf) => {
+                    const model = gltf.scene;
+                    model.scale.set(5, 5, 5);
+                    model.position.set(0, 0, 0);
+                    model.rotation.set(0, -Math.PI / 2, 0);
+                    
+                    scene.add(model);
+                    modelRef.current = model;
+                    setIsLoaded(true);
+                },
+                (progress) => {
+                    console.log('Loading progress:', (progress.loaded / progress.total * 100) + '%');
+                },
+                (error) => {
+                    console.error('Error loading GLB model:', error);
+                    // Fallback to basic geometry if GLB fails
+                    const geometry = new THREE.IcosahedronGeometry(1.5, 0);
+                    const material = new THREE.MeshPhongMaterial({ 
+                        color: 0xffffff, 
+                        wireframe: true 
+                    });
+                    const fallbackMesh = new THREE.Mesh(geometry, material);
+                    scene.add(fallbackMesh);
+                    modelRef.current = fallbackMesh;
+                    setIsLoaded(true);
+                }
+            );
+
+            sceneRef.current = { scene, camera };
+            rendererRef.current = renderer;
+
+            // Setup drag handlers
+            const cleanupDrag = setupDragHandlers(
+                mountRef.current, 
+                sceneRef, 
+                isDragging, 
+                previousMousePosition, 
+                currentRotation, 
+                isReturning
+            );
+
+            const animate = () => {
+                frameRef.current = requestAnimationFrame(animate);
+                
+                if (modelRef.current && isReturning.current) {
+                    currentRotation.current.x += (0 - currentRotation.current.x) * 0.05;
+                    currentRotation.current.y += (-Math.PI / 2 - currentRotation.current.y) * 0.05;
+                    
+                    if (Math.abs(currentRotation.current.x) < 0.01 && Math.abs(currentRotation.current.y) < 0.01) {
+                        currentRotation.current.x = 0;
+                        currentRotation.current.y = -Math.PI / 2;
+                        isReturning.current = false;
+                    }
+                    
+                    modelRef.current.rotation.x = currentRotation.current.x;
+                    modelRef.current.rotation.y = currentRotation.current.y;
+                } else if (modelRef.current && isDragging.current) {
+                    modelRef.current.rotation.x = currentRotation.current.x;
+                    modelRef.current.rotation.y = currentRotation.current.y;
+                }
+                
+                renderer.render(scene, camera);
+            };
+
+            animate();
+            window.addEventListener('resize', updateSize);
+
+            return () => {
+                if (frameRef.current) cancelAnimationFrame(frameRef.current);
+                if (mountRef.current && renderer.domElement) {
+                    mountRef.current.removeChild(renderer.domElement);
+                }
+                window.removeEventListener('resize', updateSize);
+                cleanupDrag();
+                renderer.dispose();
+            };
+        }, []);
+
+        return (
+            <div 
+                data-name="three-model" 
+                data-file="components/ThreeModel.js" 
+                ref={mountRef} 
+                className="w-full h-full cursor-grab active:cursor-grabbing select-none"
+            >
+                {!isLoaded && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-white text-sm">Loading 3D Model...</div>
+                    </div>
+                )}
+            </div>
+        );
+    } catch (error) {
+        console.error('ThreeModel component error:', error);
+        reportError(error);
+    }
+}

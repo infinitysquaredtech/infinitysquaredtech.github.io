@@ -1,0 +1,60 @@
+function Services() {
+    try {
+        const services = [
+            {
+                icon: 'fas fa-vr-cardboard',
+                title: 'AR/VR Development',
+                description: 'Immersive experiences that bridge the gap between digital and physical worlds.',
+                features: ['Custom AR Applications', 'VR Training Solutions', 'Mixed Reality Experiences']
+            },
+            {
+                icon: 'fas fa-brain',
+                title: 'End-to-End AI/ML Solutions',
+                description: 'Intelligent systems that learn, adapt, and deliver unprecedented insights.',
+                features: ['Machine Learning Models', 'Natural Language Processing', 'Computer Vision']
+            },
+            {
+                icon: 'fas fa-code',
+                title: 'Web Development',
+                description: 'Modern, scalable web applications built with cutting-edge technologies.',
+                features: ['Responsive Design', 'Progressive Web Apps', 'Cloud Integration']
+            }
+        ];
+
+        return (
+            <section id="services" data-name="services" data-file="components/Services.js" className="py-20 bg-black">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl font-bold text-white mb-4">Our Services</h2>
+                        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                            We deliver comprehensive technology solutions that transform ideas into reality
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {services.map((service, index) => (
+                            <div key={index} className="service-card bg-gray-900 rounded-2xl p-8 shadow-lg border border-gray-700">
+                                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6">
+                                    <i className={`${service.icon} text-2xl text-black`}></i>
+                                </div>
+                                <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
+                                <p className="text-gray-300 mb-6">{service.description}</p>
+                                <ul className="space-y-2">
+                                    {service.features.map((feature, idx) => (
+                                        <li key={idx} className="flex items-center text-gray-400">
+                                            <i className="fas fa-check text-white mr-3"></i>
+                                            {feature}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+    } catch (error) {
+        console.error('Services component error:', error);
+        reportError(error);
+    }
+}
