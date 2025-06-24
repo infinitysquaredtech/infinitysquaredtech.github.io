@@ -59,7 +59,7 @@ function setupDragHandlers(mountElement, sceneRef, isDragging, previousMousePosi
 
         const rotationSpeed = 0.005;
         currentRotation.current.y += deltaMove.x * rotationSpeed;
-        currentRotation.current.x -= deltaMove.y * rotationSpeed;
+        currentRotation.current.x += deltaMove.y * rotationSpeed;
 
         previousMousePosition.current = {
             x: event.touches[0].clientX,
