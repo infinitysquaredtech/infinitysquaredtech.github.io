@@ -15,7 +15,7 @@ function ThreeModel() {
             if (!mountRef.current) return;
 
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 1000);
+            const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 1000);
             const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             
             const updateSize = () => {
@@ -37,7 +37,7 @@ function ThreeModel() {
             scene.add(ambientLight);
             scene.add(directionalLight);
 
-            camera.position.z = 5;
+            camera.position.z = 11;
 
             // Load GLB model
             const loader = new THREE.GLTFLoader();
