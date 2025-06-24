@@ -6,11 +6,6 @@ function Hero() {
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div className="text-black fade-in order-2 md:order-1">
                     <div className="flex items-center mb-6">
-                    <img 
-                        src="https://app.trickle.so/storage/public/images/usr_1124d167b8000001/5a19a333-1c5e-41c9-bd2a-ef7626fbb9ae.png" 
-                        alt="Infinity Squared Technologies" 
-                        className="w-16 h-16 mr-4"
-                    />
                     <div>
                         <h1 className="text-3xl md:text-5xl font-bold">
                         Infinity Squared
