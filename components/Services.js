@@ -5,13 +5,13 @@ function Services() {
                 icon: 'fas fa-vr-cardboard',
                 title: 'AR/VR Development',
                 description: 'Immersive experiences that bridge the gap between digital and physical worlds.',
-                features: ['Custom AR Applications', 'VR Training Solutions', 'Mixed Reality Experiences']
+                features: ['WebAR Applications', 'WebVR Solutions', 'Mixed Reality Experiences']
             },
             {
                 icon: 'fas fa-brain',
                 title: 'End-to-End AI/ML Solutions',
                 description: 'Intelligent systems that learn, adapt, and deliver unprecedented insights.',
-                features: ['Machine Learning Models', 'Natural Language Processing', 'Computer Vision']
+                features: ['Computer Vision', 'Machine Learning Models', 'Natural Language Processing']
             },
             {
                 icon: 'fas fa-code',

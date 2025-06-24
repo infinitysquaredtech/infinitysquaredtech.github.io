@@ -28,11 +28,11 @@ function About() {
                             
                             <div className="grid grid-cols-2 gap-6">
                                 <div className="text-center">
-                                    <div className="text-3xl font-bold text-white mb-2">50+</div>
+                                    <div className="text-3xl font-bold text-white mb-2">30+</div>
                                     <div className="text-gray-400">Projects Completed</div>
                                 </div>
                                 <div className="text-center">
-                                    <div className="text-3xl font-bold text-white mb-2">15+</div>
+                                    <div className="text-3xl font-bold text-white mb-2">10+</div>
                                     <div className="text-gray-400">Expert Team Members</div>
                                 </div>
                             </div>

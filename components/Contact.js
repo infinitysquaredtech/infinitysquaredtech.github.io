@@ -3,23 +3,36 @@ function Contact() {
         const [formData, setFormData] = React.useState({
             name: '',
             email: '',
-            service: '',
+            subject: '',
             message: ''
         });
         const [isSubmitting, setIsSubmitting] = React.useState(false);
+        const [submitStatus, setSubmitStatus] = React.useState(null); // null | 'success' | 'error'
 
         const handleSubmit = async (e) => {
             e.preventDefault();
             setIsSubmitting(true);
-            
+            setSubmitStatus(null);
             try {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                alert('Thank you for your message! We\'ll get back to you soon.');
-                setFormData({ name: '', email: '', service: '', message: '' });
+                const formData = new FormData(e.target);
+                formData.append("access_key", "51725bc0-0023-4d7e-a3ad-111ca4a98cc2");
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData
+                });
+                const data = await response.json();
+                if (data.success) {
+                    console.log('Form submitted successfully:', data);
+                    setFormData({ name: '', email: '', subject: '', message: '' });
+                    setSubmitStatus('success');
+                } else {
+                    setSubmitStatus('error');
+                }
             } catch (error) {
-                alert('Sorry, there was an error sending your message. Please try again.');
+                setSubmitStatus('error');
             } finally {
                 setIsSubmitting(false);
+                setTimeout(() => setSubmitStatus(null), 60000); // Reset after 1 minute
             }
         };
 
@@ -58,16 +71,16 @@ function Contact() {
                             />
                         </div>
                         <select
-                            name="service"
-                            value={formData.service}
+                            name="subject"
+                            value={formData.subject}
                             onChange={handleChange}
                             required
                             className="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring-2 focus:ring-white focus:border-white bg-gray-800 text-white mb-4"
                         >
                             <option value="">Select a Service</option>
-                            <option value="ar-vr">AR/VR Development</option>
-                            <option value="ai-ml">AI/ML Solutions</option>
-                            <option value="web-dev">Web Development</option>
+                            <option value="Enquiry for AR/VR Development">AR/VR Development</option>
+                            <option value="Enquiry for AI/ML Solutions">AI/ML Solutions</option>
+                            <option value="Enquiry for Web Development">Web Development</option>
                         </select>
                         <textarea
                             name="message"
@@ -81,9 +94,10 @@ function Contact() {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full bg-white text-black py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors disabled:opacity-50"
+                            className={`w-full py-3 rounded-lg font-semibold transition-colors disabled:opacity-50 
+                                ${isSubmitting ? 'bg-white text-black' : submitStatus === 'success' ? 'bg-green-500 text-white' : submitStatus === 'error' ? 'bg-red-500 text-white' : 'bg-white text-black hover:bg-gray-100'}`}
                         >
-                            {isSubmitting ? 'Sending...' : 'Send Message'}
+                            {isSubmitting ? 'Sending...' : submitStatus === 'success' ? 'Yayy! We\'ll respond ASAP 🚀 ' : submitStatus === 'error' ? 'Error! Try Again' : 'Send Message'}
                         </button>
                     </form>
                 </div>
