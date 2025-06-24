@@ -39,11 +39,11 @@ function Hero() {
                 </div>
                 
                 <div className="relative order-1 md:order-2">
-                    <div className="floating-animation w-[300px] h-[300px] md:w-[650px] md:h-[600px] items-center justify-center mx-auto">
+                    <div className="floating-animation w-[400px] h-[400px] md:w-[650px] md:h-[600px] items-center justify-center mx-auto">
                     <ThreeModel />
                     </div>
-                    <div className="absolute -bottom-6 -left-6 w-16 h-16 md:w-24 md:h-24 bg-gray-300 rounded-full opacity-30"></div>
-                    <div className="absolute -top-6 -right-6 w-20 h-20 md:w-32 md:h-32 bg-gray-400 rounded-full opacity-30"></div>
+                    <div className="absolute -bottom-6 -left-0 w-16 h-16 md:w-24 md:h-24 bg-gray-300 rounded-full opacity-30"></div>
+                    <div className="absolute -top-6 -right-0 w-20 h-20 md:w-32 md:h-32 bg-gray-400 rounded-full opacity-30"></div>
                 </div>
                 </div>
             </div>

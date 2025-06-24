@@ -14,13 +14,12 @@ function Header() {
             <header data-name="header" data-file="components/Header.js" className="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 border-b border-gray-200">
                 <nav className="container mx-auto px-6 py-4">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3 logo-container">
+                        <div className="flex items-center logo-container">
                             <img 
-                                src="https://app.trickle.so/storage/public/images/usr_1124d167b8000001/5a19a333-1c5e-41c9-bd2a-ef7626fbb9ae.png" 
+                                src="asset/logos/infinity.webp" 
                                 alt="Infinity Squared Technologies Logo" 
-                                className="w-10 h-10"
+                                className="w-20"
                             />
-                            <span className="text-xl font-bold text-black">Infinity Squared</span>
                         </div>
 
                         <div className="hidden md:flex space-x-8">
