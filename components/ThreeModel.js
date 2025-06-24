@@ -32,7 +32,7 @@ function ThreeModel() {
 
             // === Add equirectangular environment map for realistic reflections ===
             const textureLoader = new THREE.TextureLoader();
-            textureLoader.load('asset/env.jpg', (texture) => {
+            textureLoader.load('asset/env.webp', (texture) => {
                 texture.mapping = THREE.EquirectangularReflectionMapping;
                 scene.environment = texture;
             });

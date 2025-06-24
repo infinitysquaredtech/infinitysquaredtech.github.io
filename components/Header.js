@@ -16,7 +16,7 @@ function Header() {
                     <div className="flex items-center justify-between">
                         <div className="flex items-center logo-container">
                             <img 
-                                src="asset/logos/infinity.webp" 
+                                src="asset/logos/infinity_logo.webp" 
                                 alt="Infinity Squared Technologies Logo" 
                                 className="w-20"
                             />
