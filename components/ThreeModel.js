@@ -30,6 +30,21 @@ function ThreeModel() {
             updateSize();
             mountRef.current.appendChild(renderer.domElement);
 
+            // === Add equirectangular environment map for realistic reflections ===
+            const textureLoader = new THREE.TextureLoader();
+            textureLoader.load('asset/env.jpg', (texture) => {
+                texture.mapping = THREE.EquirectangularReflectionMapping;
+                scene.environment = texture;
+            });
+            // === End environment map ===
+
+            // === Improved lighting setup ===
+            // Optional: subtle point light for extra fill
+            const pointLight = new THREE.PointLight(0xffffff, 0.3, 50);
+            pointLight.position.set(0, 5, 10);
+            scene.add(pointLight);
+            // === End improved lighting ===
+
             // Add lights
             const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
             const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
