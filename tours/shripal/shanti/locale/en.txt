@@ -1,0 +1,39 @@
+#: locale=en
+
+## Hotspot
+
+### Text
+HotspotPanoramaOverlayTextImage_B4624FB4_A517_2E27_41C8_DE0433C28264.text = EXIT
+HotspotPanoramaOverlayTextImage_B4466D70_A512_D23F_41DD_141FA3448F27.text = EXIT
+HotspotPanoramaOverlayTextImage_B4A89299_A50D_D6EE_41D2_E5FFECD64BFC.text = EXIT
+HotspotPanoramaOverlayTextImage_AADFED0F_A50D_33E1_41DF_B0AF43FA5109.text = Explore Amenities
+HotspotPanoramaOverlayTextImage_B46161A1_A537_5221_41C3_FE0E8971F0E5.text = Go Back
+FlatHotspotPanoramaOverlayTextImage_B75A1915_A51F_33E1_41DA_9C714F20A09C.text = Kids Play Area
+FlatHotspotPanoramaOverlayTextImage_B7324FFB_A51D_2E21_41C8_CA7A9B715B92.text = Party Lawn
+FlatHotspotPanoramaOverlayTextImage_B7E42695_A51F_5EE6_41D0_A1531C53180A.text = Senior Citizen Corner
+
+## Media
+
+### Image
+imlevel_B8E98069_A577_522E_41C0_2CE41BD57DA4.url = media/panorama_A97AD0CD_A51D_F261_41D9_0561AD2F9A99_HS_kozy8mpa_en.webp
+imlevel_B8EADFF7_A577_2E21_41D0_2EA417C318A1.url = media/panorama_A97AD7AA_A51D_DE23_41D3_96CEF63005AF_HS_qlrab3tp_en.webp
+imlevel_B8E7DFA9_A577_2E21_41E1_CB306137EDA6.url = media/panorama_A97AD7AA_A51D_DE23_41D3_96CEF63005AF_HS_qnkiklyj_en.webp
+imlevel_B8E65EC3_A577_2E61_41B6_E905B4BEE726.url = media/panorama_A97AD7AA_A51D_DE23_41D3_96CEF63005AF_HS_sd2bma6y_en.webp
+imlevel_B8E90047_A577_5261_41E0_6FA35CE3F9F0.url = media/panorama_A97AD7AA_A51D_DE23_41D3_96CEF63005AF_HS_uhg997ig_en.webp
+imlevel_B8EFC09B_A577_52E2_41C8_B07CE5B8F300.url = media/panorama_A97B5A38_A51D_F62F_41DD_65E78118058A_HS_yyk1vb33_en.webp
+imlevel_B8F220DA_A577_5262_41E2_72C519A7A975.url = media/panorama_A97BD37A_A51D_D623_41D5_28152808D918_HS_zmp0mblb_en.webp
+imlevel_B8E31E57_A577_2E62_41BA_732FCA02AC32.url = media/panorama_AFC669CA_A517_3263_41DA_886E58F91ED9_HS_opccoax1_en.webp
+
+### Title
+panorama_AFC669CA_A517_3263_41DA_886E58F91ED9.label = 01_front
+panorama_A97AD7AA_A51D_DE23_41D3_96CEF63005AF.label = 03
+panorama_A97AD0CD_A51D_F261_41D9_0561AD2F9A99.label = garden
+panorama_A97B5A38_A51D_F62F_41DD_65E78118058A.label = playground
+panorama_A97BD37A_A51D_D623_41D5_28152808D918.label = sitting_area
+
+## Tour
+
+### Description
+
+### Title
+tour.name = Shripal-Shanti Aerial Tour
