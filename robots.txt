@@ -1,2 +1,12 @@
 User-agent: *
 Allow: /
+Disallow: /lib/
+Disallow: /asset/
+Disallow: /media/
+Disallow: /misc/
+
+# Sitemap
+Sitemap: https://infinitysquaredtech.com/sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
