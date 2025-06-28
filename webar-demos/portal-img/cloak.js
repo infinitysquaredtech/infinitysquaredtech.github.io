@@ -19,7 +19,7 @@ AFRAME.registerComponent("bottle-mod", {
       let mesh = this.el.getObject3D("mesh");
       
       var texture = new THREE.TextureLoader().load(
-        "https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/sky.jpg?v=1669205789893",
+        "asset/sky.jpg?v=1669205789893",
         function() {
           var cubeTex = targetCube.fromEquirectangularTexture(renderer, texture);
           mesh.traverse(function(el) {

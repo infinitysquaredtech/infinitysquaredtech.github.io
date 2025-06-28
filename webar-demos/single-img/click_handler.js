@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// detect click event
 	examplePlane1.addEventListener("click", event => {
 	  // console.log("button 1 click");
-	  exampleModel.setAttribute("src", "https://cdn.glitch.global/96c9bc3c-059f-44a8-ac06-bb97959d205b/veribot.glb?v=1666761605021")
+	  exampleModel.setAttribute("src", "asset/veribot.glb")
 	  exampleModel.setAttribute("position", "0 -0.7 0.5")
 	  exampleModel.setAttribute("scale", "0 0 0")
 	  exampleModel.setAttribute("rotation", "0 90 0")
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// detect click event
 	examplePlane2.addEventListener("click", event => {
 	  // console.log("button 2 click");
-	  exampleModel.setAttribute("src", "https://cdn.glitch.global/96c9bc3c-059f-44a8-ac06-bb97959d205b/mech_drone.glb?v=1666959307012")
+	  exampleModel.setAttribute("src", "asset/mech_drone.glb")
 	  exampleModel.setAttribute("position", "0 -0.8 0.5")
 	  exampleModel.setAttribute("scale", "0 0 0")
 	  exampleModel.setAttribute("rotation", "0 180 0")
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// detect click event
 	examplePlane3.addEventListener("click", event => {
 	  // console.log("button 3 click");
-	  exampleModel.setAttribute("src", "https://cdn.glitch.global/96c9bc3c-059f-44a8-ac06-bb97959d205b/police_drone.glb?v=1666959321441")
+	  exampleModel.setAttribute("src", "asset/police_drone.glb")
 	  exampleModel.setAttribute("position", "0 0 0.5")
 	  exampleModel.setAttribute("scale", "0 0 0")
 	  exampleModel.setAttribute("rotation", "0 135 0")
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	// detect click event
 	examplePlane4.addEventListener("click", event => {
 	  // console.log("button 4 click");
-	  exampleModel.setAttribute("src", "https://cdn.glitch.global/96c9bc3c-059f-44a8-ac06-bb97959d205b/s9_mini_drone.glb?v=1666959311290")
+	  exampleModel.setAttribute("src", "asset/s9_mini_drone.glb")
 	  exampleModel.setAttribute("position", "0 0 0.5")
 	  exampleModel.setAttribute("scale", "0 0 0")
 	  exampleModel.setAttribute("rotation", "0 0 0")
