@@ -1,0 +1,201 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
+    <!-- <script src="https://unpkg.com/aframe-transparent-video-shader@1.0.3/dist/aframe-transparent-video-shader.umd.js"></script> -->
+    <script src="video-shader.js"></script>
+<!--     <script src="ar_target_handler.js"></script> -->
+    <script src="cloak.js"></script>
+    <script src="portal_click_handler.js"></script>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+  </head>
+  <body>
+    
+    <!-- AR Scene Setup -->
+    <a-scene mindar-image="filterMinCF:0.001; filterBeta: 0.01; imageTargetSrc: ashwagandha.mind;" color-space="sRGB" renderer="logarithmicDepthBuffer: true; antialias: true; alpha: true; precision: medium; colorManagement: true; physicallyCorrectLights;" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+      <!-- Assets to be used -->
+      <a-assets>
+        <!-- 3D assets -->
+        <a-asset-item id="ground" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/ground.glb?v=1669206022239"></a-asset-item>
+        <a-asset-item id="avatarModel" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/new_bottle.glb?v=1703265066556"></a-asset-item>
+        <a-asset-item id="morterModel" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/ayurvedic.glb?v=1703671169594"></a-asset-item>
+        <a-asset-item id="pill" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/pill.glb?v=1703672015088"></a-asset-item>
+
+        <!-- Portal door texture -->
+        <!-- <img id="marker" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/rasayanam%20ashwagandha.webp?v=1703759644553"> -->
+
+        <!-- Box inside texture -->
+        <img id="inside" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/box_.webp?v=1703759459849">
+
+        <!-- circle buttons -->
+        <img id="small_b1" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/ash_1.webp?v=1703759610794">
+        <img id="small_b2" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/ash_2.webp?v=1703759613596">
+        <img id="small_b3" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/ash_3.webp?v=1703759616538">
+        <img id="small_b4" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/ash_4.webp?v=1703759607645">
+        <img id="small_b5" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/ash_5.webp?v=1703759620624">
+        <img id="small_b6" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/ash_6.webp?v=1703759625238">
+
+        <!-- Videos -->
+        <video id="currentVid" src="" autoplay loop="true" crossorigin="anonymous" playsinline webkit-playsinline></video>
+        <video id="coverVid" src="" autoplay crossorigin="anonymous" playsinline webkit-playsinline></video>
+      </a-assets>
+
+      <!-- Camera Setup -->
+      <a-camera position="0 0 0" look-controls="enabled: false" cursor="fuse: false; rayOrigin: mouse;" raycaster="far: 10000; objects: .clickable"></a-camera>
+
+      <!-- Target environment -->
+      <a-entity mindar-image-target="targetIndex: 0" cursor="rayOrigin: mouse" id="animated-target">
+        <a-entity light="type: ambient; color: #CCC; intensity: 0.6"></a-entity>
+        <!-- <a-entity light="type: hemisphere; color: #CCC; groundColor: #FFF; intensity: 2"></a-entity> -->
+        <a-light type="directional" intensity="0.5" position="0 0 0" rotation="-90 -90 0" target="#directionaltarget">
+          <a-entity id="directionaltarget" position="-1 0 -1"></a-entity>
+        </a-light>
+
+        <a-entity position="0 0 -0.6" rotation="90 0 0" cloak></a-entity>
+    
+        <a-box position="0 0 -0.6" scale="1.1 1.95 1.1" src="#inside" material="side: back;"></a-box>
+
+<!--         <a-image id="cover" src="#marker" position="0 0 0" height="1.8" width="1" rotation="0 0 0"></a-image> -->
+
+        <!-- Button-1 -->
+
+        <!-- <a-entity geometry="primitive: plane" position="-0.8 0.2 0" material="shader: flat; src: #marker"></a-entity> -->
+
+        <!-- Button-1 -->
+        <a-image id="button1" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/mental.jpg?v=1669206441353"
+                 width="1" height="0.4"
+                 position="-1.05 0.75 0"
+                 visible="false">
+        </a-image>
+
+        <!-- Button-2 -->
+        <a-image id="button2" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/cognitive.jpg?v=1669206434953"
+                 width="1.6" height="0.65"
+                 position="0 1.3 0"
+                 visible="false">
+        </a-image>
+
+        <!-- Button-3 -->
+        <a-image id="button3" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/brain.jpg?v=1669206441228"
+                 width="1" height="0.4"
+                 position="1.05 0.75 0"
+                 visible="false">
+        </a-image>
+
+        <!-- Button-4 -->
+<!--         <a-image id="button4" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/nervous.jpg?v=1669206435738"
+                 width="1.7" height="0.7"
+                 position="0 1.3 0"
+                 visible="false">
+        </a-image> -->
+
+        <!-- Back -->
+        <a-image id="example-back" class="clickable" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/left-arrow.webp?v=1703759634868"
+                 width="0.3" height="0.3"
+                 position="0 -1.2 0"
+                 visible="false">
+        </a-image>
+        <!-- Info-1 -->
+        <a-image id="info_1" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/what-is-removebg.webp?v=1703759299062"
+                 width="2" height="1.4"
+                 position="0 1.6 0"
+                 visible="false">
+        </a-image>
+        <!-- Info-2 -->
+        <a-image id="info_2" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/pill-12-removebg.webp?v=1703759372369"
+                 width="1.9" height="1.1"
+                 position="0 1.5 0"
+                 visible="false">
+        </a-image>
+        <!-- Info-3 -->
+        <a-image id="info_3" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/pill-spec-removebg.webp?v=1703759447331"
+                 width="1.8" height="1.2"
+                 position="0 1.5 0"
+                 visible="false">
+        </a-image>
+        <!-- Info-4 -->
+        <a-image id="info_4" src="https://cdn.glitch.global/62a13213-a377-46d0-b165-d649252152ec/facts-removebg.webp?v=1703759431075"
+                 width="1.8" height="0.8"
+                 position="0 1.3 0"
+                 visible="false">
+        </a-image>
+
+
+        <a-entity id="circle_menu" scale="1 1 1">
+
+          <a-image id="cir1" class="clickable" src="#small_b1" width="0.6" height="0.6" position="-0.8 1 0.1"></a-image>
+          <a-image id="cir2" class="clickable" src="#small_b2" width="0.6" height="0.6" position="-0.8 0 0.1"></a-image>
+          <a-image id="cir3" class="clickable" src="#small_b3" width="0.6" height="0.6" position="-0.8 -1 0.1"></a-image>
+          <a-image id="cir4" class="clickable" src="#small_b4" width="0.6" height="0.6" position="0.8 -1 0.1"></a-image>
+          <a-image id="cir5" class="clickable" src="#small_b5" width="0.6" height="0.6" position="0.8 0 0.1"></a-image>
+          <a-image id="cir6" class="clickable" src="#small_b6" width="0.6" height="0.6" position="0.8 1 0.1"></a-image>
+
+        </a-entity>
+
+        <a-entity id="3d_model">
+          <a-gltf-model
+            id="animated-ground"
+            rotation="0 0 0"
+            position="0 -0.78 -0.6"
+            scale="0.18 0.17 0.18"
+            src="#ground"
+            visible="true">
+          </a-gltf-model>
+
+          <a-gltf-model 
+            id="animated-pill"
+            rotation="0 0 0"
+            position="0 0 -0.6"
+            scale="0 0 0"
+            src="#pill"
+            animation="property: rotation; to:0 360 0; loop:true; easing: linear; dur: 5000"
+            visible="false">
+          </a-gltf-model>
+          
+          <a-gltf-model 
+            id="animated-morter"
+            rotation="0 0 0"
+            position="0 -0.8 -0.6"
+            scale="0 0 0"
+            src="#morterModel"
+            visible="false"
+            bottle-mod>
+          </a-gltf-model>
+
+          <a-gltf-model 
+            id="animated-bottle"
+            rotation="0 -90 0"
+            position="0 -0.8 -0.6"
+            scale="0.0047 0.0047 0.0047"
+            src="#avatarModel"
+            visible="true"
+            bottle-mod>
+          </a-gltf-model>
+        </a-entity>
+
+        <a-entity
+          id="trans-vid"
+          material="shader: transparent-video; src: #currentVid"
+          geometry="primitive: plane; width: 1.1; height: 1.1"
+          position="0 0 -0.3"
+          scale="0 0 0">
+        </a-entity>
+        
+        <a-entity
+          id="cover-vid"
+          material="src: #coverVid"
+          geometry="primitive: plane; width: 1.95; height: 1.1"
+          position="0 0 0"
+          rotation="0 0 90"
+          scale="0 0 0">
+        </a-entity>
+
+      </a-entity>
+
+    </a-scene>
+    
+  </body>
+</html>
