@@ -29,13 +29,13 @@ AFRAME.registerComponent("controller", {
         hammertime.on("panleft", () => {
             // if (!this.modelVisible) return;
             this.isPanning = true
-            this.mesh.rotation.y -= 8 * Math.PI / 360;
+            this.mesh.rotation.y -= 4 * Math.PI / 360;
         })
        
         hammertime.on("panright", () => {
             // if (!this.modelVisible) return;
             this.isPanning = true
-            this.mesh.rotation.y += 8 * Math.PI / 360;
+            this.mesh.rotation.y += 4 * Math.PI / 360;
         })
         hammertime.on("panend", () => this.isPanning = false)
         hammertime.on("pancancel", () => this.isPanning = false)
