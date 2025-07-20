@@ -1,9 +1,8 @@
 User-agent: *
 Allow: /
-Disallow: /lib/
 Disallow: /asset/
-Disallow: /media/
-Disallow: /misc/
+Disallow: /tours/
+Disallow: /webar-demos/
 
 # Sitemap
 Sitemap: https://infinitysquaredtech.com/sitemap.xml
