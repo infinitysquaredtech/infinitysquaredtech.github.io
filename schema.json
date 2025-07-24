@@ -1,8 +1,8 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Infinity Squared Technologies - AR/VR, AI/ML Development",
-  "description": "Leading technology company specializing in Cutting-edge WebAR, WebVR, Mixed Reality, Virtual Reality, Generative AI, Computer Vision. Pioneering the future with immersive experiences.",
+  "headline": "∞² - AR/VR Development, AI/ML Solutions & Web Services",
+  "description": "Infinity Squared Technologies delivers AR/VR development, AI/ML solutions, and web services. Experience innovative solutions, immersive reality, and engaging experiences",
   "author": {
     "@type": "Organization",
     "@id": "https://infinitysquaredtech.com/#organization",
