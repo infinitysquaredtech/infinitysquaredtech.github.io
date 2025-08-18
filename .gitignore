@@ -13,10 +13,6 @@ Thumbs.db
 # VS Code settings
 .vscode/
 
-# Compiled CSS/JS
-*.min.css
-*.min.js
-
 # Environment files
 .env
 .env.*
