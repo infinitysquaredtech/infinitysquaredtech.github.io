@@ -63,7 +63,7 @@ AFRAME.registerComponent('visibility-fade', {
                 this.positionSet = true;
             }
             
-            console.log('Marker loaded, position:', this.el.getAttribute('position'));
+            // console.log('Marker loaded, position:', this.el.getAttribute('position'));
         });
         
         // Wait for camera to be ready
@@ -115,7 +115,7 @@ AFRAME.registerComponent('visibility-fade', {
         
         // Calculate angle between camera direction and reference direction
         const angle = cameraDir.angleTo(toReference) * (180 / Math.PI);
-        console.log('Angle to reference point:', angle);
+        // console.log('Angle to reference point:', angle);
         
         // Set target opacity and scale based on field of view
         if (angle < this.data.fovThreshold) {
