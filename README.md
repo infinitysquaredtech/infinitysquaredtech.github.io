@@ -8,15 +8,18 @@ Official website for Infinity Squared Technologies - delivering AR/VR developmen
 
 ## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-- [Development](#development)
-- [Build](#build)
-- [Deployment](#deployment)
-- [Technologies Used](#technologies-used)
+- [Overview](#dart-overview)
+- [Features](#sparkles-features)
+- [Project Structure](#file-folder-project-structure)
+- [Prerequisites](#wrench-prerequisites)
+- [Getting Started](#rocket-getting-started)
+- [Development](#computer-development)
+- [Build](#building-construction-build)
+- [Deployment](#ship-deployment)
+- [Technologies Used](#hammer-and-wrench-technologies-used)
+- [License](#memo-license)
+- [Contributing](#handshake-contributing)
+- [Important Notes](#mag-important-notes)
 
 ## 🎯 Overview
 
