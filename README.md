@@ -35,11 +35,17 @@ Infinity Squared Technologies website showcases innovative AR/VR experiences, AI
 
 ```
 .
-├── app.min.js              # Main application entry point
+├── .babelrc                # Babel configuration
+├── .gitignore              # Git ignore rules
+├── app.js                  # Main application entry point (source)
+├── main.css                # Main stylesheet (source)
 ├── index.html              # Main HTML file
 ├── package.json            # Project dependencies and scripts
-├── styles.min.css          # Main stylesheet
-├── tail.min.css            # Tailwind CSS output
+├── favicon.ico             # Website favicon
+├── robots.txt              # SEO robots file
+├── sitemap.xml             # SEO sitemap
+├── schema.json             # Structured data schema
+├── CNAME                   # Custom domain configuration
 ├── components/             # React/JS components (source)
 │   ├── About.min.js
 │   ├── Clients.min.js
@@ -62,7 +68,10 @@ Infinity Squared Technologies website showcases innovative AR/VR experiences, AI
 │   ├── app.min.js
 │   ├── components/
 │   ├── pages/
-│   └── utils/
+│   ├── utils/
+│   └── styles/
+│       ├── main.min.css
+│       └── tail.min.css
 ├── asset/                  # Static assets
 │   ├── clients/
 │   ├── images/
@@ -110,8 +119,9 @@ npm install
 ```
 
 This will install all required dependencies including:
-- Babel (for JS transpilation)
-- Tailwind CSS (for styling)
+- Babel (for JS transpilation and React JSX support)
+- Tailwind CSS (for utility-first styling)
+- PostCSS & cssnano (for CSS processing and minification)
 - npm-run-all (for parallel script execution)
 
 ### 3. Start Development
@@ -150,29 +160,49 @@ Then navigate to: `http://localhost:8000`
 
 | Script | Description |
 |--------|-------------|
-| `npm run watch` | Start development mode with file watching |
+| `npm run watch` | Start development mode with file watching (all files) |
 | `npm run build` | Build all components for production |
-| `npm run clean` | Remove all built files |
-| `npm run build:app` | Build main application file |
+| `npm run clean` | Remove all built files from lib/ directory |
+| `npm run build:app` | Build main application file (app.js → lib/app.min.js) |
 | `npm run build:components` | Build all components |
 | `npm run build:pages` | Build all page components |
 | `npm run build:utils` | Build utility functions |
-| `npm run build:tailwind` | Build Tailwind CSS |
-| `npm run watch:*` | Watch individual parts of the project |
+| `npm run build:tailwind` | Build Tailwind CSS (lib/styles/tail.min.css) |
+| `npm run build:styles` | Build and minify main CSS (main.css → lib/styles/main.min.css) |
+| `npm run watch:app` | Watch and rebuild app.js |
+| `npm run watch:components` | Watch and rebuild components |
+| `npm run watch:pages` | Watch and rebuild pages |
+| `npm run watch:utils` | Watch and rebuild utils |
+| `npm run watch:tailwind` | Watch and rebuild Tailwind CSS |
+| `npm run watch:styles` | Watch and rebuild main CSS |
 
 ### Development Workflow
 
-1. **Make Changes** - Edit files in `components/`, `pages/`, `utils/`, or `app.min.js`
+1. **Make Changes** - Edit source files:
+   - `app.js` - Main application logic
+   - `main.css` - Custom CSS styles
+   - `components/` - React components
+   - `pages/` - Page-level components
+   - `utils/` - Utility functions
 2. **Watch Rebuild** - The watch script automatically rebuilds changed files
 3. **Refresh Browser** - Reload your browser to see changes
-4. **Test** - Verify functionality across different browsers
+4. **Test** - Verify functionality across different browsers and devices
 
 ### File Organization
 
-- **Source Files**: Edit files in root-level `components/`, `pages/`, and `utils/` directories
-- **Built Files**: Generated files are in the `lib/` directory (do not edit directly)
-- **Styles**: Main styles in `styles.min.css`, Tailwind output in `tail.min.css`
-- **Assets**: Static files in `asset/` directory
+- **Source Files**: Edit files in root-level directories:
+  - `app.js` - Main application entry point
+  - `main.css` - Main stylesheet with custom styles
+  - `components/`, `pages/`, `utils/` - Component and utility modules
+- **Built Files**: Generated files in `lib/` directory (do not edit directly):
+  - `lib/app.min.js` - Compiled application
+  - `lib/styles/main.min.css` - Minified main styles
+  - `lib/styles/tail.min.css` - Generated Tailwind CSS
+  - `lib/components/`, `lib/pages/`, `lib/utils/` - Compiled modules
+- **Assets**: Static files in `asset/` directory (images, videos, logos)
+- **Configuration**:
+  - `.babelrc` - Babel transpilation settings
+  - `.gitignore` - Git ignore patterns
 
 ## 🏗️ Build
 
@@ -185,9 +215,10 @@ npm run build
 ```
 
 This will:
-- Transpile and minify all JavaScript files
+- Transpile and minify all JavaScript files with Babel
+- Process and minify CSS files with PostCSS and cssnano
 - Generate optimized Tailwind CSS
-- Output production-ready files to `lib/`
+- Output production-ready files to `lib/` directory
 
 ### Clean Build
 
@@ -213,18 +244,34 @@ This project is configured for GitHub Pages deployment:
 For other hosting platforms:
 
 1. Run production build: `npm run build`
-2. Upload all files to your web server
-3. Ensure `.html`, `.js`, `.css`, and `asset/` files are accessible
+2. Upload all necessary files to your web server:
+   - `index.html` and other HTML files
+   - `lib/` directory (all compiled assets)
+   - `asset/` directory (images, videos, etc.)
+   - `tours/` and `webar-demos/` directories (if needed)
+   - `favicon.ico`, `robots.txt`, `sitemap.xml`, `schema.json`
+3. Ensure proper file permissions and accessibility
 4. Configure your server to serve `index.html` as the default document
+5. Set up proper MIME types for `.js`, `.css`, and `.webp` files
 
 ## 🛠️ Technologies Used
 
-- **Babel** - JavaScript transpilation and minification
+### Build Tools
+- **Babel** - JavaScript transpilation and minification with React JSX support
+- **PostCSS** - CSS processing and transformation
+- **cssnano** - CSS minification and optimization
 - **Tailwind CSS** - Utility-first CSS framework
-- **Three.js** - 3D graphics library (via components)
-- **React/JSX** - Component-based UI (transpiled)
-- **WebAR** - AR.js / MindAR for augmented reality
-- **360° Tours** - Virtual tour rendering engine
+- **npm-run-all** - Parallel script execution for efficient builds
+
+### Frontend Technologies
+- **React/JSX** - Component-based UI architecture (transpiled with Babel)
+- **Three.js** - 3D graphics library for interactive models
+- **WebAR** - AR.js / MindAR for augmented reality experiences
+- **360° Tours** - Virtual tour rendering engine for immersive property tours
+
+### Configuration
+- **Babel Config** - `.babelrc` with @babel/preset-env and @babel/preset-react
+- **Git** - Version control with `.gitignore` for dependency management
 
 ## 📝 License
 
@@ -238,10 +285,12 @@ See [LICENSE.md](LICENSE.md) for details.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📧 Contact
-
-Infinity Squared Technologies - [https://infinitysquaredtech.com](https://infinitysquaredtech.com)
-
 ---
 
-**Note**: The source JavaScript files (`.min.js`) are actually JSX/React code that gets transpiled by Babel. The `.min.js` extension is used for organizational purposes, not as an indicator of pre-minified code.
+## 🔍 Important Notes
+
+- **Source Files**: The `.min.js` extension on source files in `components/`, `pages/`, and `utils/` is for organizational purposes only. These files contain unminified JSX/React code that gets transpiled and minified by Babel during the build process.
+- **Main Entry**: The main application file is `app.js` (not `app.min.js`) which contains React components and routing logic.
+- **CSS Processing**: The project uses both custom CSS (`main.css`) and Tailwind CSS, both processed and optimized during build.
+- **Output Directory**: All compiled files are generated in the `lib/` directory, which should not be edited manually.
+- **Watch Mode**: During development, use `npm run watch` to automatically rebuild files on changes for a smoother development experience.
