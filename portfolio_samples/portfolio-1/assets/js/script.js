@@ -13,15 +13,15 @@
         autoplaySpeed: 6000
       });
 
- // Portfolio Popp Up
-  $('.portfolio-gallery').each(function () {
-        $(this).find('.popup-gallery').magnificPopup({
-            type: 'image',
-            gallery: {
-                enabled: true
-            }
-        });
-    });
+//  // Portfolio Popp Up
+//   $('.portfolio-gallery').each(function () {
+//         $(this).find('.popup-gallery').magnificPopup({
+//             type: 'image',
+//             gallery: {
+//                 enabled: true
+//             }
+//         });
+//     });
 
 // Menu scrollspy
     $('body').scrollspy({ target: '#navbarmain' });
@@ -136,7 +136,6 @@ $(document).ready(function () {
             var width = $(this).data('percent');
             $(this).css({'transition': 'width 3s'});
             $(this).appear(function() {
-                console.log('hello');
                 $(this).css('width', width + '%');
                 $(this).find('.count').countTo({
                     from: 0,
@@ -152,19 +151,19 @@ $(document).ready(function () {
 
 	
  // Shuffle js filter and masonry
-    var Shuffle = window.Shuffle;
-    var jQuery = window.jQuery;
+    // var Shuffle = window.Shuffle;
+    // var jQuery = window.jQuery;
 
-    var myShuffle = new Shuffle(document.querySelector('.shuffle-wrapper'), {
-        itemSelector: '.shuffle-item',
-        buffer: 1
-    });
+    // var myShuffle = new Shuffle(document.querySelector('.shuffle-wrapper'), {
+    //     itemSelector: '.shuffle-item',
+    //     buffer: 1
+    // });
 
-    jQuery('input[name="shuffle-filter"]').on('change', function (evt) {
-        var input = evt.currentTarget;
-        if (input.checked) {
-            myShuffle.filter(input.value);
-        }
-    });
+    // jQuery('input[name="shuffle-filter"]').on('change', function (evt) {
+    //     var input = evt.currentTarget;
+    //     if (input.checked) {
+    //         myShuffle.filter(input.value);
+    //     }
+    // });
 
 })(jQuery);
