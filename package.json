@@ -10,7 +10,7 @@
     "build:styles": "npx postcss main.css -o lib/styles/main.min.css --use cssnano --no-map",
     "build": "npm-run-all build:app build:components build:pages build:utils build:tailwind build:styles",
     "clean": "rm -rf lib",
-    "watch:app": "npx babel app.min.js --out-file lib/app.min.js --minified --watch",
+    "watch:app": "npx babel app.js --out-file lib/app.min.js --minified --watch",
     "watch:components": "npx babel components/ --out-dir lib/components --minified --watch",
     "watch:pages": "npx babel pages/ --out-dir lib/pages --minified --watch",
     "watch:utils": "npx babel utils/ --out-dir lib/utils --minified --watch",
