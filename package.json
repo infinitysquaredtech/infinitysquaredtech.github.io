@@ -8,7 +8,7 @@
     "build:utils": "npx babel utils/ --out-dir lib/utils --minified",
     "build:tailwind": "npx tailwindcss -o lib/styles/tail.min.css --minify",
     "build:styles": "npx postcss main.css -o lib/styles/main.min.css --use cssnano --no-map",
-    "build": "npm-run-all build:app build:components build:pages build:utils build:tailwind build:styles",
+    "build": "npm-run-all --parallel build:app build:components build:pages build:utils build:tailwind build:styles",
     "clean": "rm -rf lib",
     "watch:app": "npx babel app.js --out-file lib/app.min.js --minified --watch",
     "watch:components": "npx babel components/ --out-dir lib/components --minified --watch",
